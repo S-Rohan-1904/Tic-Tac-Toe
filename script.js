@@ -1,6 +1,9 @@
 const cells=document.querySelectorAll('.cell')
 const statusText = document.querySelector('#statusText')
 const restartBtn = document.querySelector('#restartBtn')
+const player1Score = document.querySelector('#player1Score')
+const player2Score = document.querySelector('#player2Score')
+const drawScore = document.querySelector('#draw')
 
 const winConditions = [
     [0,1,2],
@@ -14,6 +17,9 @@ const winConditions = [
 ]
 
 let input = ['','','','','','','','','']
+let player1=0
+let player2=0
+let draw=0
 
 let currentPlayer='X'
 
@@ -64,17 +70,26 @@ function checkWinner() {
     }
 
     if(won) {
-        
+        if (currentPlayer == 'X') {
+            player1+=1
+            player1Score.textContent=`${player1}`
+        } else {
+            player2+=1
+            player2Score.textContent=`${player2}`
+        }
         statusText.textContent=`${currentPlayer} wins!`
         running=false
     }
     else if(!input.includes("")) {
+        draw+=1
+        drawScore.textContent=`${draw}`
         statusText.textContent='Draw!'
         running=false
     }
     else {
         changePlayer()
     }
+
 }
 
 function restartGame() {
