@@ -4,6 +4,9 @@ body {
     background-color: black;
     color: white;
 }
+* {
+    margin: 0;
+}
 
 .cell {
     width: 8vw;
@@ -36,12 +39,13 @@ body {
 
 
 
-#title {
-    font-size: 60px;
+h1#title {
+    font-size: 50px;
+    margin: 4vh;
 }
 
 #statusText {
-    margin: 30px 0 30px 0;
+    margin: 3vh 0;
     font-size: 30px;
     transition: all 0.5s;
 }
