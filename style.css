@@ -62,6 +62,7 @@ h1#title {
     transition: color 0.2s ease-in-out;
     text-align: center;
     margin: auto;
+    margin-top: 40px;
 }
 
 #restartBtn:hover {
@@ -74,7 +75,7 @@ h1#title {
     justify-content: center;
     gap: 30px;
     font-size: 12px;
-    margin: 0 0 30px 0;
+    margin: 7vh 0 2vh 0;
 }
 
 .scoreboard h1 {
@@ -85,4 +86,8 @@ h1#title {
 .scoreboard h2 {
     font-size: 40px;
     margin: 0;
+}
+
+.draw h1,.draw h2 {
+    opacity: 0.5;
 }

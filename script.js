@@ -1,6 +1,8 @@
 const cells=document.querySelectorAll('.cell')
-const statusText = document.querySelector('#statusText')
 const restartBtn = document.querySelector('#restartBtn')
+const player1Label = document.querySelector('#player1Label')
+const player2Label = document.querySelector('#player2Label')
+const drawLabel = document.querySelector('#drawLabel')
 const player1Score = document.querySelector('#player1Score')
 const player2Score = document.querySelector('#player2Score')
 const drawScore = document.querySelector('#draw')
@@ -26,11 +28,23 @@ let currentPlayer='X'
 let running=false
 
 initialize()
-
+function opacity(currentPlayer) {
+    if (currentPlayer=='X') {
+        player1Score.style.opacity='1'
+        player1Label.style.opacity='1'
+        player2Score.style.opacity='0.5'
+        player2Label.style.opacity='0.5'
+    } else {
+        player1Score.style.opacity='0.5'
+        player1Label.style.opacity='0.5'
+        player2Score.style.opacity='1'
+        player2Label.style.opacity='1'
+    }
+}
 function initialize() {
     cells.forEach(cell => cell.addEventListener('click', cellClicked))
     restartBtn.addEventListener('click', restartGame)
-    statusText.textContent=`${currentPlayer}'s turn`
+    opacity(currentPlayer)
     running=true
 }
 
@@ -50,7 +64,7 @@ function update(cell,index) {
 
 function changePlayer() {
     currentPlayer = (currentPlayer == 'X') ? 'O' : 'X'
-    statusText.textContent = `${currentPlayer}'s turn`
+    opacity(currentPlayer)
 }
 
 function checkWinner() {
@@ -77,13 +91,11 @@ function checkWinner() {
             player2+=1
             player2Score.textContent=`${player2}`
         }
-        statusText.textContent=`${currentPlayer} wins!`
         running=false
     }
     else if(!input.includes("")) {
         draw+=1
         drawScore.textContent=`${draw}`
-        statusText.textContent='Draw!'
         running=false
     }
     else {
@@ -95,7 +107,7 @@ function checkWinner() {
 function restartGame() {
     currentPlayer = "X"
     input = ['','','','','','','','','']
-    statusText.textContent=`${currentPlayer}'s turn`
+    opacity(currentPlayer)
     cells.forEach(cell=> cell.textContent='')
     running=true
 }
