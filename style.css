@@ -6,8 +6,8 @@ body {
 }
 
 .cell {
-    width: 150px;
-    height: 150px;
+    width: 8vw;
+    height: 8vw;
     border: 2px solid #ffffff;
     color: white;
     box-shadow: 0 0 0 2px;
@@ -20,6 +20,13 @@ body {
     align-items: center;
     cursor: pointer;
 }
+
+#cellContainer {
+    display:grid;
+    grid-template-columns: repeat(3,auto);
+    width: 24vw;
+    margin: auto;
+}
 #gameContainer {
     text-align: center;
     display: flex;
@@ -27,12 +34,7 @@ body {
     justify-content: center;
 }
 
-#cellContainer {
-    display:grid;
-    grid-template-columns: repeat(3,auto);
-    width: 450px;
-    margin: auto;
-}
+
 
 #title {
     font-size: 60px;
