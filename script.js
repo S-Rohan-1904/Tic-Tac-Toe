@@ -6,6 +6,7 @@ const drawLabel = document.querySelector('#drawLabel')
 const player1Score = document.querySelector('#player1Score')
 const player2Score = document.querySelector('#player2Score')
 const drawScore = document.querySelector('#draw')
+const statusText = document.querySelector('#statusText')
 
 const winConditions = [
     [0,1,2],
@@ -41,10 +42,14 @@ function opacity(currentPlayer) {
         player2Label.style.opacity='1'
     }
 }
+function updateStatus(message) {
+    statusText.textContent = message
+}
 function initialize() {
     cells.forEach(cell => cell.addEventListener('click', cellClicked))
     restartBtn.addEventListener('click', restartGame)
     opacity(currentPlayer)
+    updateStatus(`Player ${currentPlayer}'s turn`)
     running=true
 }
 
@@ -65,6 +70,7 @@ function update(cell,index) {
 function changePlayer() {
     currentPlayer = (currentPlayer == 'X') ? 'O' : 'X'
     opacity(currentPlayer)
+    updateStatus(`Player ${currentPlayer}'s turn`)
 }
 
 function checkWinner() {
@@ -92,11 +98,13 @@ function checkWinner() {
             player2Score.textContent=`${player2}`
         }
         running=false
+        updateStatus(`Player ${currentPlayer} wins!`)
     }
     else if(!input.includes("")) {
         draw+=1
         drawScore.textContent=`${draw}`
         running=false
+        updateStatus('Draw!')
     }
     else {
         changePlayer()
@@ -108,6 +116,7 @@ function restartGame() {
     currentPlayer = "X"
     input = ['','','','','','','','','']
     opacity(currentPlayer)
+    updateStatus(`Player ${currentPlayer}'s turn`)
     cells.forEach(cell=> cell.textContent='')
     running=true
 }
